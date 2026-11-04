@@ -1,0 +1,23 @@
+# =============================================================================
+# docker-compose.yml — Sobe o Exportador com um único comando:
+#   docker compose up -d --build
+# Ajuste os dois itens marcados com "TROQUE" antes da primeira execução.
+# =============================================================================
+services:
+  exportador:
+    build: .
+    image: exportador-authenticator-gemma
+    container_name: exportador-authenticator
+    restart: unless-stopped          # volta sozinho se o computador reiniciar
+    ports:
+      - "8443:8443"
+    environment:
+      # TROQUE: nome e IP da máquina onde o Docker roda (separados por vírgula)
+      NOMES_CERTIFICADO: "DESKTOP-D1MKCED,DESKTOP-D1MKCED.Gemmatur.local,192.168.22.149,localhost"
+      # TROQUE se quiser: "ligado" pede usuário e senha; "desligado" libera para todos
+      LOGIN: "desligado"
+    volumes:
+      - dados:/dados                 # certificado e usuários ficam guardados aqui
+
+volumes:
+  dados:

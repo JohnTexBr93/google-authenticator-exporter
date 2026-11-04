@@ -1,0 +1,17 @@
+# Arquivos que podem conter secrets reais — nunca versionar
+*.txt
+!vendor/*.txt
+*.csv
+*.json
+# Certificado, chave e usuários do servidor — nunca versionar
+servidor/*.pfx
+servidor/*.cer
+servidor/*.crt
+servidor/*.key
+servidor/certificado-senha.txt
+servidor/usuarios.json
+# Pacote gerado por docker/empacotar.ps1
+*.tar
+# Binários gerados pela versão em Go
+*.exe
+binaries/*

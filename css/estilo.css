@@ -1,0 +1,178 @@
+/* =============================================================================
+   estilo.css — Aparência da página no padrão visual da Gemma Viagens e Turismo
+   -----------------------------------------------------------------------------
+   Baseado no "Manual de Marca — Gemma Corporate Travel Solutions" (pasta
+   "manual de marca"), página 11 (cores) e 12 (tipografia):
+     1. Azul principal  #284B9F  (Pantone 18-4063 TSX Blue Tattoo)
+     2. Laranja         #F2831F  (Pantone 15-1157 TCX Flame Orange) — contraste
+     3. Degradê da estrela  #F89C1C -> #E95222 — cor de apoio
+     4. Cinza de apoio  #3C3A40  (Pantone 19-3911 TPG Black Beauty)
+   Fontes oficiais: Dense (títulos), Coves Light (apoio) e Gotham (texto).
+   Elas são comerciais e não acompanham o projeto: se estiverem instaladas no
+   computador, são usadas; senão, entra a Raleway (gratuita, licença OFL,
+   pasta fontes/), que é a fonte usada na diagramação do próprio manual.
+   Para mudar uma cor em todo o site, altere só a variável em :root.
+   ============================================================================= */
+
+/* ----- Fonte Raleway incluída no projeto (funciona sem internet) ----- */
+@font-face { font-family: "Raleway"; font-weight: 400; font-style: normal; font-display: swap; src: url("../fontes/raleway-400-normal.woff2") format("woff2"); }
+@font-face { font-family: "Raleway"; font-weight: 500; font-style: italic; font-display: swap; src: url("../fontes/raleway-500-italic.woff2") format("woff2"); }
+@font-face { font-family: "Raleway"; font-weight: 700; font-style: normal; font-display: swap; src: url("../fontes/raleway-700-normal.woff2") format("woff2"); }
+@font-face { font-family: "Raleway"; font-weight: 900; font-style: normal; font-display: swap; src: url("../fontes/raleway-900-normal.woff2") format("woff2"); }
+
+/* ----- Cores e fontes da marca ----- */
+:root {
+  color-scheme: light;
+  --azul: #284B9F;
+  --azul-escuro: #1A4D8A;
+  --azul-claro: #E8EDF7;
+  --laranja: #F2831F;
+  --laranja-texto: #B4560C;
+  --laranja-claro: #FDEEDF;
+  --degrade: linear-gradient(90deg, #E95222, #F89C1C);
+  --cinza: #3C3A40;
+  --cinza-suave: #6B6970;
+  --borda: #DADCE3;
+  --fundo: #F5F6F9;
+  --branco: #FFFFFF;
+  --ok: #2E7D32;
+  --ok-claro: #E7F3E8;
+  --erro: #C62828;
+  --erro-claro: #FCEAEA;
+  --sombra: 0 1px 2px rgba(40, 75, 159, .06), 0 4px 14px rgba(40, 75, 159, .06);
+  --fonte-titulo: "Dense", "Raleway", "Segoe UI", system-ui, sans-serif;
+  --fonte-apoio: "Coves", "Raleway", "Segoe UI", system-ui, sans-serif;
+  --fonte-texto: "Gotham", "Gotham Book", "Raleway", "Segoe UI", system-ui, sans-serif;
+  --fonte-mono: ui-monospace, "Cascadia Mono", Consolas, monospace;
+}
+
+/* ----- Base ----- */
+* { box-sizing: border-box; }
+html, body { margin: 0; }
+body { background: var(--fundo); color: var(--cinza); font: 400 15px/1.55 var(--fonte-texto); font-variant-numeric: lining-nums; }
+.pagina { max-width: 1200px; margin: 0 auto; padding: 0 16px 64px; }
+b, strong { font-weight: 700; }
+:focus-visible { outline: 3px solid var(--laranja); outline-offset: 2px; }
+
+/* ----- Cabeçalho com o logotipo (respeita a área de proteção e o mínimo de 100px) ----- */
+.topo { display: flex; align-items: center; gap: 28px; background: var(--branco); margin: 0 -16px; padding: 20px 32px; border-bottom: 4px solid transparent; border-image: var(--degrade) 1; }
+.topo .logo { width: 132px; height: auto; flex: none; }
+.topo h1 { font: 900 1.65rem/1.15 var(--fonte-titulo); color: var(--azul); text-transform: uppercase; margin: 0; letter-spacing: .01em; }
+.topo .subtitulo { font: italic 500 1.05rem/1.3 var(--fonte-apoio); color: var(--laranja-texto); margin: 4px 0 0; }
+.introducao { margin: 22px 0 0; }
+.introducao p { margin: 0; }
+.selo { display: inline-block; font-size: .82rem; font-weight: 700; color: var(--azul); background: var(--azul-claro); padding: 3px 12px; border-radius: 999px; margin-top: 10px; }
+
+/* ----- Seções (etapas 1, 2 e 3) com a barra em degradê do manual ----- */
+section { background: var(--branco); border: 1px solid var(--borda); border-radius: 10px; padding: 22px; margin-top: 20px; box-shadow: var(--sombra); }
+section h2 { font: 900 1.15rem/1.2 var(--fonte-titulo); color: var(--azul); text-transform: uppercase; letter-spacing: .02em; margin: 0 0 16px; display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+section h2::after { content: ""; flex-basis: 100%; height: 4px; max-width: 120px; background: var(--degrade); border-radius: 2px; }
+.etapa { display: inline-grid; place-items: center; width: 28px; height: 28px; border-radius: 50%; background: var(--azul); color: var(--branco); font: 900 .85rem var(--fonte-titulo); }
+
+/* ----- Área de soltar imagens ----- */
+.soltar { border: 2px dashed var(--borda); border-radius: 10px; padding: 30px 16px; text-align: center; cursor: pointer; transition: border-color .15s, background .15s; }
+.soltar:hover, .soltar.arrastando { border-color: var(--laranja); background: var(--laranja-claro); }
+.soltar strong { display: block; font: 700 1.05rem var(--fonte-apoio); color: var(--azul); }
+.soltar span { color: var(--cinza-suave); font-size: .9rem; }
+.dicas { color: var(--cinza-suave); font-size: .86rem; margin: 12px 0 0; padding-left: 18px; }
+details { margin-top: 14px; }
+summary { cursor: pointer; color: var(--azul); font-weight: 700; }
+textarea { width: 100%; min-height: 90px; margin-top: 8px; padding: 10px; font: .85rem/1.4 var(--fonte-mono); background: var(--fundo); color: var(--cinza); border: 1px solid var(--borda); border-radius: 8px; resize: vertical; }
+
+/* ----- Botões: azul principal; laranja só como destaque ----- */
+button { font: 700 .88rem var(--fonte-apoio); padding: 8px 14px; border-radius: 8px; border: 1px solid var(--borda); background: var(--branco); color: var(--azul); cursor: pointer; white-space: nowrap; transition: background .15s, border-color .15s; }
+button:hover { border-color: var(--azul); background: var(--azul-claro); }
+button.principal { background: var(--azul); color: var(--branco); border-color: var(--azul); }
+button.principal:hover { background: var(--azul-escuro); }
+button.perigo { color: var(--erro); }
+button.perigo:hover { border-color: var(--erro); background: var(--erro-claro); }
+button.pequeno { padding: 4px 8px; font-size: .78rem; }
+button:disabled { opacity: .45; cursor: not-allowed; }
+.linha { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+.linha.acima { margin-top: 8px; }
+.linha.centro { justify-content: center; }
+
+/* ----- Miniaturas dos arquivos enviados ----- */
+.arquivos { display: grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap: 10px; margin-top: 14px; }
+.cartao { border: 1px solid var(--borda); border-radius: 8px; overflow: hidden; background: var(--branco); font-size: .8rem; }
+.cartao .miniatura { height: 100px; display: grid; place-items: center; background: var(--fundo); }
+.cartao .miniatura img { max-width: 100%; max-height: 100px; object-fit: contain; }
+.cartao .miniatura.texto { color: var(--cinza-suave); font: 700 .75rem var(--fonte-mono); }
+.cartao .info { padding: 6px 8px; border-top: 1px solid var(--borda); }
+.cartao .nome { font-weight: 700; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.sit-carregando { color: var(--cinza-suave); }
+.sit-ok { color: var(--ok); }
+.sit-aviso { color: var(--laranja-texto); }
+.sit-erro { color: var(--erro); }
+
+/* ----- Verificação ----- */
+.faixa { padding: 12px 14px; border-radius: 8px; font-weight: 700; border-left: 5px solid currentColor; }
+.faixa.ok { background: var(--ok-claro); color: var(--ok); }
+.faixa.aviso { background: var(--laranja-claro); color: var(--laranja-texto); }
+.faixa.erro { background: var(--erro-claro); color: var(--erro); }
+.faixa.neutra { background: var(--fundo); color: var(--cinza-suave); }
+.numeros { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 10px; margin: 14px 0; }
+.numero { background: var(--azul-claro); border-radius: 8px; padding: 10px 12px; }
+.numero b { display: block; font: 900 1.6rem/1.1 var(--fonte-titulo); color: var(--azul); font-variant-numeric: tabular-nums; }
+.numero span { color: var(--cinza-suave); font-size: .8rem; }
+.lote { margin-top: 10px; }
+.lote-titulo { font-size: .9rem; margin-bottom: 6px; }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.chip { min-width: 64px; padding: 4px 10px; border-radius: 6px; font-size: .8rem; font-weight: 700; text-align: center; }
+.chip.lido { background: var(--ok-claro); color: var(--ok); }
+.chip.falta { background: var(--erro-claro); color: var(--erro); border: 1px dashed var(--erro); }
+.erros { margin-top: 12px; font-size: .85rem; }
+.erros li { color: var(--erro); word-break: break-word; }
+
+/* ----- Barra de ferramentas e tabela de contas ----- */
+.ferramentas { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; margin-bottom: 12px; }
+.ferramentas input, .ferramentas select { font: inherit; font-size: .9rem; padding: 7px 10px; border-radius: 8px; border: 1px solid var(--borda); background: var(--branco); color: var(--cinza); }
+.ferramentas input { flex: 1 1 220px; min-width: 0; }
+.espaco { flex: 1; }
+.moldura-tabela { overflow-x: auto; border: 1px solid var(--borda); border-radius: 8px; }
+table { border-collapse: collapse; width: 100%; font-size: .88rem; }
+th, td { text-align: left; padding: 9px 10px; border-bottom: 1px solid var(--borda); vertical-align: middle; }
+th { background: var(--azul); color: var(--branco); font: 700 .76rem var(--fonte-apoio); text-transform: uppercase; letter-spacing: .04em; white-space: nowrap; }
+tr:last-child td { border-bottom: 0; }
+tbody tr:nth-child(even) { background: #FAFBFD; }
+tbody tr:hover { background: var(--laranja-claro); }
+td.num { color: var(--cinza-suave); width: 1%; }
+td.emissor { font-weight: 700; color: var(--azul); }
+td.conta { word-break: break-all; min-width: 140px; }
+.codigo { font: 700 1.1rem var(--fonte-mono); letter-spacing: .08em; color: var(--cinza); cursor: pointer; }
+.codigo:hover { color: var(--laranja-texto); }
+.tempo { height: 3px; background: var(--borda); border-radius: 2px; margin-top: 3px; overflow: hidden; width: 90px; }
+.tempo i { display: block; height: 100%; background: var(--degrade); transition: width 1s linear; }
+.tempo.acabando i { background: var(--erro); }
+.secret { font: .82rem var(--fonte-mono); word-break: break-all; }
+.meta { color: var(--cinza-suave); font-size: .78rem; font-weight: 400; text-transform: none; letter-spacing: 0; }
+.acoes { white-space: nowrap; }
+.vazio { padding: 32px; text-align: center; color: var(--cinza-suave); }
+
+/* ----- Janela do QR code de importação ----- */
+.janela-fundo { position: fixed; inset: 0; background: rgba(26, 30, 50, .6); display: none; place-items: center; padding: 16px; z-index: 10; }
+.janela-fundo.aberta { display: grid; }
+.janela { background: var(--branco); border-radius: 12px; padding: 22px; max-width: 420px; width: 100%; text-align: center; border-top: 5px solid transparent; border-image: var(--degrade) 1; }
+.janela h3 { margin: 0 0 4px; font: 900 1.2rem var(--fonte-titulo); color: var(--azul); text-transform: uppercase; }
+.janela p { margin: 0 0 12px; color: var(--cinza-suave); word-break: break-all; }
+.janela img { width: 100%; max-width: 300px; background: #fff; border-radius: 8px; image-rendering: pixelated; }
+.janela code { display: block; text-align: left; font: .72rem var(--fonte-mono); background: var(--fundo); padding: 8px; border-radius: 6px; word-break: break-all; margin: 10px 0; }
+
+/* ----- Aviso flutuante ("Copiado") ----- */
+.aviso-flutuante { position: fixed; bottom: 20px; left: 50%; transform: translate(-50%, 20px); background: var(--azul); color: var(--branco); font-weight: 700; padding: 9px 18px; border-radius: 8px; font-size: .9rem; opacity: 0; visibility: hidden; transition: all .2s; z-index: 20; }
+.aviso-flutuante.visivel { transform: translate(-50%, 0); opacity: 1; visibility: visible; }
+
+/* ----- Rodapé ----- */
+footer { margin-top: 28px; padding-top: 14px; border-top: 1px solid var(--borda); color: var(--cinza-suave); font-size: .82rem; }
+footer p { margin: 0 0 6px; }
+footer .licenca { color: var(--azul); font-weight: 700; }
+.oculto { display: none !important; }
+
+/* ----- Celular (até 640px) ----- */
+@media (max-width: 640px) {
+  .topo { flex-direction: column; align-items: flex-start; gap: 12px; padding: 16px; }
+  .topo .logo { width: 110px; }
+  .topo h1 { font-size: 1.3rem; }
+  section { padding: 16px; }
+  .espaco { display: none; }
+}

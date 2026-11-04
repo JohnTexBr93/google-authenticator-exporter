@@ -1,0 +1,13 @@
+# Nunca enviar para a imagem: dados reais, manual, certificados e usuários locais
+*.txt
+!LICENCA.txt
+!vendor/*.txt
+!fontes/*.txt
+*.csv
+*.json
+manual de marca
+servidor/*.pfx
+servidor/*.cer
+servidor/*.crt
+servidor/*.key
+testes

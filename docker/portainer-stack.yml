@@ -1,0 +1,23 @@
+# =============================================================================
+# portainer-stack.yml — Docker Compose para o Portainer (Stacks > Add stack >
+# Web editor). Usa a imagem já construída em "Images > Build a new image".
+# Ajuste só as duas linhas marcadas com "TROQUE".
+# =============================================================================
+services:
+  exportador:
+    image: exportador-authenticator-gemma:1.1
+    restart: unless-stopped
+    ports:
+      - "8443:8443"        # TROQUE só o número da ESQUERDA (porta do servidor)
+    environment:
+      # TROQUE: nome (e/ou IP) do servidor Docker, como vai aparecer no link
+      # da plataforma interna. Separe vários por vírgula. Serve só para o
+      # certificado HTTPS; o IP interno do contêiner o Docker define sozinho.
+      NOMES_CERTIFICADO: "nome-do-servidor"
+      # Login desligado: o controle de acesso é feito pela plataforma interna.
+      LOGIN: "desligado"
+    volumes:
+      - dados:/dados
+
+volumes:
+  dados:
